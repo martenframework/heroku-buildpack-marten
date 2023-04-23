@@ -119,6 +119,11 @@ echo "export PATH=\$PATH:\$HOME/.heroku/marten" >> "$CRYSTAL_BUILD_DIR/.profile.
 start "Compiling server"
 time crystal build src/server.cr -o "$CRYSTAL_BUILD_DIR/bin/server" --stats --release
 
+if [[ "${DISABLE_COLLECTASSETS:-0}" == "0" ]]; then
+  start "Collecting assets"
+  time $CRYSTAL_BUILD_DIR/.heroku/marten/marten collectassets --no-input
+fi
+
 if [[ "$BUILD_DIR" == /tmp/* ]]; then
   cd /tmp
   mv /tmp/crystal-app-build "$BUILD_DIR"
