@@ -59,7 +59,6 @@ mkdir -p "$ENV_DIR"
 mkdir -p "$CACHE_DIR/crystal"
 mkdir -p "$BUILD_DIR/.profile.d"
 mkdir -p "$BUILD_DIR/.heroku/crystal"
-mkdir -p "$BUILD_DIR/.heroku/marten"
 
 if [ -f "$CACHE_DIR/crystal/$CRYSTAL_VERSION/.cache-complete" ]; then
   start "Using cached Crystal (version $CRYSTAL_VERSION $CRYSTAL_VERSION_REASON)"
@@ -112,9 +111,10 @@ start "Ensuring that $CRYSTAL_BUILD_DIR/bin exists"
 mkdir -p "$CRYSTAL_BUILD_DIR/bin"
 
 start "Compiling .heroku/marten/marten"
-mkdir -p "$BUILD_DIR/.heroku/marten"
-time crystal build manage.cr -o "$BUILD_DIR/.heroku/marten/marten" --stats
-echo "export PATH=\$PATH:\$HOME/.heroku/marten" >> "$BUILD_DIR/.profile.d/marten_environment.sh"
+mkdir -p "$CRYSTAL_BUILD_DIR/.heroku/marten"
+mkdir -p "$CRYSTAL_BUILD_DIR/.profile.d/"
+time crystal build manage.cr -o "$CRYSTAL_BUILD_DIR/.heroku/marten/marten" --stats
+echo "export PATH=\$PATH:\$HOME/.heroku/marten" >> "$CRYSTAL_BUILD_DIR/.profile.d/marten_environment.sh"
 
 start "Compiling server"
 time crystal build src/server.cr -o "$CRYSTAL_BUILD_DIR/bin/server" --stats --release
