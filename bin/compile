@@ -59,6 +59,7 @@ mkdir -p "$ENV_DIR"
 mkdir -p "$CACHE_DIR/crystal"
 mkdir -p "$BUILD_DIR/.profile.d"
 mkdir -p "$BUILD_DIR/.heroku/crystal"
+mkdir -p "$BUILD_DIR/.heroku/marten"
 
 if [ -f "$CACHE_DIR/crystal/$CRYSTAL_VERSION/.cache-complete" ]; then
   start "Using cached Crystal (version $CRYSTAL_VERSION $CRYSTAL_VERSION_REASON)"
