@@ -112,7 +112,7 @@ mkdir -p "$CRYSTAL_BUILD_DIR/bin"
 
 start "Compiling .heroku/marten/marten"
 mkdir -p "$BUILD_DIR/.heroku/marten"
-time crystal build manage.cr -o .heroku/marten/marten --stats
+time crystal build manage.cr -o "$BUILD_DIR/.heroku/marten/marten" --stats
 echo "export PATH=\$PATH:\$HOME/.heroku/marten" >> "$BUILD_DIR/.profile.d/marten_environment.sh"
 
 start "Compiling server"
