@@ -17,6 +17,11 @@ CACHE_DIR=$2
 CRYSTAL_CACHE_DIR=$CACHE_DIR/crystal-cache
 ENV_DIR=$3
 
+# Setup command variables, for later use in the Buildpack.
+# --
+
+CURL="curl -s -L --retry 15 --retry-delay 2" # retry for up to 30 seconds
+
 # Defines some utilities.
 # --
 
