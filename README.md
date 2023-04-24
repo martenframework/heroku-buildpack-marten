@@ -25,10 +25,16 @@ release: marten migrate
 
 ## Usage
 
-Once your setup meets all the [requirements](#requirements), you can create an application in Heroku using this buildpack by running the following command:
+Once your setup meets all the [requirements](#requirements), you can create an application in Heroku using this buildpack by running the following `heroku create` command:
 
 ```bash
 heroku create myapp --buildpack=git@github.com:martenframework/heroku-buildpack-marten.git
+```
+
+If you need to add this buildback to an existing application, you can use the following `heroku buildpacks` command:
+
+```bash
+heroku buildpacks:add https://github.com/martenframework/heroku-buildpack-marten
 ```
 
 A few additional things should be noted regarding this buildpack:
